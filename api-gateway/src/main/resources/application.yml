@@ -1,0 +1,55 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: api-gateway
+  web:
+    resources:
+      add-mappings: false
+  cloud:
+    gateway:
+      default-filters:
+        - AddRequestHeader=X-Request-Foo, Bar
+      routes:
+        - id: spring-shield
+          uri: http://localhost:8181
+          predicates:
+            - Path=/api/user/**
+
+        - id: audio-to-transcript
+          uri: http://localhost:8282
+          predicates:
+            - Path=/api/audiototext/**
+
+        - id: summariser
+          uri: http://localhost:8383
+          predicates:
+            - Path=/api/summarize/**
+
+        - id: videocall
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  security:
+    enabled: false
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG
+
+jwt:
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  expiration:
+    ms: 86400000
