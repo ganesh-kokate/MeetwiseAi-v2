@@ -27,7 +27,7 @@ spring:
           predicates:
             - Path=/api/summarize/**
 
-        - id: videocall
+        - id: meet
           uri: http://localhost:8080
           predicates:
             - Path=/**

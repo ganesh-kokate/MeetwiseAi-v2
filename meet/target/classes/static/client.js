@@ -285,7 +285,8 @@ const generateBtn = document.getElementById("generate");
 const uniqueId = document.getElementById("uuid");
 
 generateBtn.onclick = () => {
-    fetch("http://192.168.2.4:8080/room/generate-meetingId")
+    const meetIdGen = "http://" + window.location.hostname + ":8080/room/generate-meetingId";
+    fetch(meetIdGen)
     .then(response =>{
         if (!response.ok)
         {
@@ -305,9 +306,27 @@ generateBtn.onclick = () => {
 
 const hang= document.getElementById('hangUp');
 hang.onclick=() =>{
-    mediaRecorder.stop();
-    socket.emit()
+    socket.emit('leaveRoom', roomNameInput.value);
+    setTimeout(() => socket.disconnect(), 100);
+     for (let userId in connections) {
+            connections[userId].close();
+            delete connections[userId];
+        }
 
+         for (let userId in peers) {
+                const video = document.getElementById(`video-${userId}`);
+                if (video && video.parentElement) video.parentElement.remove();
+                delete peers[userId];
+            }
+
+            if (localStream) {
+                    localStream.getTracks().forEach(track => track.stop());
+                }
+
+                // Reset UI
+                roomDiv.classList.add('d-none');
+                divRoomConfig.classList.remove('d-none');
+                uuidGenerator.classList.remove('d-none');
 }
 
 

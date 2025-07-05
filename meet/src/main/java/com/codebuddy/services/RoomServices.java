@@ -23,7 +23,7 @@ public class RoomServices {
 
     public String generateMeetingId() {
         MeetingID = generateSegment(3) + "-" + generateSegment(4) + "-" + generateSegment(3);
-        ProcessBuilder processBuilder = new ProcessBuilder("node", "D:/MeetwiseAi/videocall/node-bot/bot-server.js", MeetingID);
+        ProcessBuilder processBuilder = new ProcessBuilder("node", "D:/MeetwiseAi/meet/node-bot/bot-server.js", MeetingID);
         try {
             processBuilder.inheritIO();
             processBuilder.start();

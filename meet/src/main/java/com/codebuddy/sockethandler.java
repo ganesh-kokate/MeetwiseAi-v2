@@ -45,7 +45,14 @@ public class sockethandler {
         }
     }
 
+    @OnEvent("leaveRoom")
+    public void onLeaveRoom(SocketIOClient client, String room) {
+        String clientId = client.getSessionId().toString(); // ← this is the correct user ID
+        handleUserDisconnect(client, clientId, room);
+    }
+
     private void handleUserDisconnect(SocketIOClient client, String clientId, String room) {
+        System.out.println("---------removing "+ room + " removing--------------");
         Set<String> users = roomUsers.get(room);
         if (users != null) {
             users.remove(clientId);
