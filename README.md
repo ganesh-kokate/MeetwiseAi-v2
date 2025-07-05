@@ -4,7 +4,7 @@
 ## ✨ Features
 
 - 🎥 **Real-time Video & Audio Conferencing**  
-  Built on WebRTC, Meetwise enables high-quality peer-to-peer video calls without any third-party dependencies.
+  Built on WebRTC, Meetwise enables high-quality Many to Many Meetings without any third-party dependencies.
 
 - 🧠 **AI-Powered Meeting Summaries**  
   Automatically transcribes and summarizes meeting discussions using Deepgram's speech-to-text engine.
@@ -24,8 +24,6 @@
 - 📦 **Clean and Lightweight Frontend**  
   Built with vanilla JavaScript and HTML for fast performance and easy integration with the signaling server.
 
-- 🧪 **Developer-Friendly**  
-  Easily extensible with RESTful APIs and a straightforward local development setup.
 
 ## 🛠 Tech Stack
 
@@ -53,6 +51,11 @@ Meetwise leverages **Spring WebClient** for all inter-service and external HTTP 
 - All internal service calls (e.g., to the summarizer) are handled asynchronously.
 - Integration with **Deepgram** (for transcription) and **Groq** (for summary + action point extraction) is fully reactive using WebClient.
 - This allows Meetwise to scale efficiently under concurrent user load, reducing blocking I/O and improving responsiveness.
+
+## 🧠 System Architecture
+Here's an overview of how the Meetwise system works internally:
+![Meetwise Architecture](./meetwise-architecture.png)
+
 
 ## 🗂 Project Structure
     Meetwise Ai
