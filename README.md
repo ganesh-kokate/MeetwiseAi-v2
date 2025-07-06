@@ -24,6 +24,9 @@
 - 📦 **Clean and Lightweight Frontend**  
   Built with vanilla JavaScript and HTML for fast performance and easy integration with the signaling server.
 
+## 🧠 System Architecture
+Here's an overview of how the Meetwise system works internally:
+![Meetwise Architecture](./meetwise-architecture.png)
 
 ## 🛠 Tech Stack
 
@@ -51,10 +54,6 @@ Meetwise leverages **Spring WebClient** for all inter-service and external HTTP 
 - All internal service calls (e.g., to the summarizer) are handled asynchronously.
 - Integration with **Deepgram** (for transcription) and **Groq** (for summary + action point extraction) is fully reactive using WebClient.
 - This allows Meetwise to scale efficiently under concurrent user load, reducing blocking I/O and improving responsiveness.
-
-## 🧠 System Architecture
-Here's an overview of how the Meetwise system works internally:
-![Meetwise Architecture](./meetwise-architecture.png)
 
 
 ## 🗂 Project Structure
